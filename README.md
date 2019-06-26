@@ -9,6 +9,6 @@ The purpose of this project is to gain a better understanding of web scrapping a
 -	Number of profiles per program
 -	Number of disciplines per program
 -	Number of Special Fields of studies 
--	When page was last modified 
--	Possible ranking of programs with most information on website (Ranking Algorithm?) 
-
+-	List of programs sorted by last modified
+- Average Rating of School
+- Number of Ratings
