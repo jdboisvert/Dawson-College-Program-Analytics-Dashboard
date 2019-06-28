@@ -1,10 +1,113 @@
-<!doctype html>
-<html lang="en">
-
-<body>
-
-    <h1> Hello World!</h1>
-
-</body>
-
-</html>
+<!doctype html><html lang="en"><head>
+        <!-- Meta tags -->
+        <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <!-- Bootstrap CSS -->
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+                    <style>
+            
+            body {
+          margin-top: 50px;
+        }
+        
+        .lrg-heading {
+          font-size: 48px;
+        }
+        
+        .description {
+          font-size: 24px;
+          color: gray;
+        }
+            
+            </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="row mb-5">
+                            <div class="col text-center">
+                                <h1>Dawson College Dashboard</h1>
+                            </div>
+                        </div>
+                        <!-- First Row -->
+                        <div class="row align-items-center justify-content-center mb-5">
+                            <div class="col text-center">
+                        <p class="description">
+                            Total Programs
+                        </p>
+                        <p class="lrg-heading">
+                          XXXX
+                        </p>
+                            </div>
+                            <div class="col text-center">
+                                <p class="description">
+                            Total Specific Programs
+                        </p>
+                                <p class="lrg-heading">
+                          xxxx
+                        </p>
+                            </div>
+                        </div>
+                        <!-- Second Row -->
+                        <div class="row align-items-center justify-content-center mb-5">
+                            <div class="col text-center">
+                                <p class="description">
+                                  Total Profiles
+                              </p>
+                                <p class="lrg-heading">
+                                XXXX
+                              </p>
+                            </div>
+                            <div class="col text-center">
+                                <p class="description">
+                                  Total Disciplines
+                              </p>
+                                <p class="lrg-heading">
+                                xxxx
+                              </p>
+                            </div>
+                        </div>
+                        <!-- Third Row -->
+                        <div class="row align-items-center justify-content-center mb-5">
+                            <div class="col text-center">
+                                <p class="description">
+                                  Total Special Fields Of Studies
+                              </p>
+                                <p class="lrg-heading">
+                                XXXX
+                              </p>
+                            </div>
+                            <div class="col text-center">
+                                <p class="description">
+                                  Total General Education
+                              </p>
+                                <p class="lrg-heading">
+                                xxxx
+                              </p>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col text-center">
+                                <p class="description">
+                          How up to date are programs? 
+                        </p>
+                                <canvas id="weekdayChart" width="400" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Custom JavaScript -->
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+                    <script>
+                    var ctx = document.getElementById("weekdayChart").getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ["2014", "2015", "2016", "2017", "2018", "2019"],
+                            datasets: [{
+                                data: [80, 45, 25, 50, 10, 50],
+                                backgroundColor: ["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)", "rgb(34,139,34)","rgb(128,0,128)","rgb(255, 180, 86)"]
+                            }]
+                        }
+                    });
+                  </script>
+                </body>
+            </html>
