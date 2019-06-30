@@ -41,7 +41,8 @@ function makeYearlyPieChart(stats) {
             labels: keys,
             datasets: [{
                 data: values,
-                backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255,140,0)", "rgb(34,139,34)", "rgb(128,0,128)", "rgb(255, 180, 86)", "rgb(255, 180, 86)"]
+                //Extra colors are added in case there are more than 6 years present
+                backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255,140,0)", "rgb(34,139,34)", "rgb(128,0,128)", "rgb(255, 180, 86)", "rgb(165,42,42)", "rgb(128,128,128)"]
             }]
 
         },
@@ -49,7 +50,7 @@ function makeYearlyPieChart(stats) {
 
 }
 
-function makeTableLatest(){
+function makeTableLatestPagination(){
 
     $('#latestPrograms').after('<div id="nav"></div>');
     var rowsShown = 7;
@@ -57,7 +58,7 @@ function makeTableLatest(){
     var numPages = rowsTotal / rowsShown;
     for (i = 0; i < numPages; i++) {
         var pageNum = i + 1;
-        $('#nav').append('<a href="#latestProgram" rel="' + i + '">' + pageNum + '</a> ');
+        $('#nav').append('| <a href="#latestProgram" rel="' + i + '">' + pageNum + '</a> ');
     }
     $('#latestPrograms tbody tr').hide();
     $('#latestPrograms tbody tr').slice(0, rowsShown).show();
@@ -77,6 +78,30 @@ function makeTableLatest(){
 
 }
 
+//Populate the table with JSON data 
+function populateTable(stats){
+
+    dataStr = stats['Programs ordered newest'];
+    let dataObj = JSON.parse(dataStr);
+
+    tableBody = document.getElementById("tableBody");
+    //Just to know how many programs there are
+    numberOfItems = Object.keys(dataObj['date']).length
+    //Populating the table
+    for(let i = 0; i < numberOfItems; i++){
+        let tr = document.createElement('tr');
+        let actualDate = new Date(dataObj['date'][i]);
+        let cleanDate = actualDate.getFullYear() + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getDate();
+        tr.innerHTML = "<td>" + dataObj['programName'][i] +"</td><td>" +dataObj['type'][i] +"</td><td>"+cleanDate+"</td>";
+        tableBody.append(tr);
+
+    }
+
+    //Make table have pages
+    makeTableLatestPagination();
+
+}
+
 //Simply load JSON file into memory 
 function loadJSONData(){
 
@@ -84,6 +109,7 @@ function loadJSONData(){
         let stats = json;
         generalStats(stats); 
         makeYearlyPieChart(stats);
+        populateTable(stats);
     });
 
 }
@@ -107,8 +133,8 @@ $(document).ready(function() {
     //Populate general stats
     //generalStats(stats);
     //Make yearly pie chart
-    makeYearlyPieChart();
+    //makeYearlyPieChart();
     //Make latest table have pagination / populate
-    makeTableLatest();
+    //makeTableLatestPagination();
 
 });
