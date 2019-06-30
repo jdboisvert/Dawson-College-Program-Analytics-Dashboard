@@ -43,11 +43,37 @@ function makeTableLatest(){
 
 }
 
+//Simply load JSON file into memory 
+function loadJSONData(){
+
+    $.getJSON("https://api.myjson.com/bins/hn1z7", function(json) {
+        let stats = json; // this will show the info it in firebug console
+        generalStats(stats); 
+    });
+
+}
+
+function generalStats(stats){
+
+    $("#totalCount").html(stats['Total']);
+    $("#programCount").html(stats['Number of Programs']);
+    $("#profileCount").html(stats['Number of Profiles']);
+    $("#disciplineCount").html(stats['Number of Disciplines']);
+    $("#specialCount").html(stats['Number of Special']);
+    $("#generalEduCount").html(stats['Number of General']);
+
+}
+
 //When document is loaded
 $(document).ready(function() {
     
+    //Load JSON file with data 
+    loadJSONData();
+    //Populate general stats
+    //generalStats(stats);
     //Make yearly pie chart
     makeYearlyPieChart();
+    //Make latest table have pagination / populate
     makeTableLatest();
 
 });
