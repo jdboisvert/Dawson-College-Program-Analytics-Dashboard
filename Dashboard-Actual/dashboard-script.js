@@ -78,6 +78,26 @@ function makeTableLatestPagination(){
 
 }
 
+//Convert the date in cell to Date object?
+function convertDate(d) {
+    var p = d.split("/");
+    return +(p[2]+p[1]+p[0]);
+  }
+  
+  function sortByDate() {
+    var tbody = document.querySelector("#tableBody");
+    // get trs as array for ease of use
+    var rows = [].slice.call(tbody.querySelectorAll("tr"));
+    
+    rows.sort(function(a,b) {
+      return convertDate(b.cells[2].innerHTML) - convertDate(a.cells[2].innerHTML);
+    });
+    
+    rows.forEach(function(v) {
+      tbody.appendChild(v); // note that .appendChild() *moves* elements
+    });
+  }
+
 //Populate the table with JSON data 
 function populateTable(stats){
 
@@ -91,11 +111,14 @@ function populateTable(stats){
     for(let i = 0; i < numberOfItems; i++){
         let tr = document.createElement('tr');
         let actualDate = new Date(dataObj['date'][i]);
-        let cleanDate = actualDate.getFullYear() + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getDate();
+        let cleanDate =  actualDate.getDate()  + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getFullYear();
         tr.innerHTML = "<td>" + dataObj['programName'][i] +"</td><td>" +dataObj['type'][i] +"</td><td>"+cleanDate+"</td>";
         tableBody.append(tr);
 
     }
+
+    //Sort by dates
+    sortByDate();
 
     //Make table have pages
     makeTableLatestPagination();
