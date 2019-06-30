@@ -1,13 +1,47 @@
+function getYearValues(stats){
+
+    let yearCountsStr = stats['Year Counts'];
+    let yearCountsUnFormatted = yearCountsStr.split(',');
+    let yearCounts = {}; 
+
+    for(let i = 0; i < yearCountsUnFormatted.length; i++){
+
+        let values = yearCountsUnFormatted[i].split(':');
+        //Ensure only numbers are stored
+        yearCounts[values[0].replace(/[^0-9]/g, '')] = values[1].replace(/[^0-9]/g, '');
+
+    }
+
+    return yearCounts; 
+
+}
+
+
 //Function used to make pie chart showing distribution of newest program counts
-function makeYearlyPieChart() {
+function makeYearlyPieChart(stats) {
+
+    //Get dictonayr of values
+    let yearlyStats = getYearValues(stats);
+    //Get key values
+    const keys = Object.keys(yearlyStats);
+
+    //Build an array of the values that match the key
+    values = []
+    for(let i = 0; i < keys.length; i++){
+
+        values.push(yearlyStats[keys[i]]);
+
+    }
+
+    //Build pie graph
     var ctx = document.getElementById("newestPrograms").getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ["2014", "2015", "2016", "2017", "2018", "2019"],
+            labels: keys,
             datasets: [{
-                data: [80, 45, 25, 50, 10, 50],
-                backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255, 205, 86)", "rgb(34,139,34)", "rgb(128,0,128)", "rgb(255, 180, 86)"]
+                data: values,
+                backgroundColor: ["rgb(255, 99, 132)", "rgb(54, 162, 235)", "rgb(255,140,0)", "rgb(34,139,34)", "rgb(128,0,128)", "rgb(255, 180, 86)", "rgb(255, 180, 86)"]
             }]
 
         },
@@ -46,9 +80,10 @@ function makeTableLatest(){
 //Simply load JSON file into memory 
 function loadJSONData(){
 
-    $.getJSON("https://api.myjson.com/bins/hn1z7", function(json) {
-        let stats = json; // this will show the info it in firebug console
+    $.getJSON("dawson_programs_stats.json", function(json) {
+        let stats = json;
         generalStats(stats); 
+        makeYearlyPieChart(stats);
     });
 
 }
