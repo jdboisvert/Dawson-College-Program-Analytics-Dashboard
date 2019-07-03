@@ -118,7 +118,7 @@ function populateTable(stats){
     }
 
     //Sort by dates
-    sortByDate();
+    //sortByDate();
 
     //Make table have pages
     makeTableLatestPagination();
