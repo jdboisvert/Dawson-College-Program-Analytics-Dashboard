@@ -106,13 +106,14 @@ function populateTable(stats){
 
     tableBody = document.getElementById("tableBody");
     //Just to know how many programs there are
-    numberOfItems = Object.keys(dataObj['date']).length
+    numberOfItems = Object.keys(dataObj['data']).length
     //Populating the table
     for(let i = 0; i < numberOfItems; i++){
         let tr = document.createElement('tr');
-        let actualDate = new Date(dataObj['date'][i]);
+        let actualDate = new Date(dataObj['data'][i][0]);
         let cleanDate =  actualDate.getDate()  + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getFullYear();
-        tr.innerHTML = "<td>" + dataObj['programName'][i] +"</td><td>" +dataObj['type'][i] +"</td><td>"+cleanDate+"</td>";
+        let currentRow = "<td>" + dataObj['data'][i][1] +"</td><td>" +dataObj['type'][i][2] +"</td><td>"+cleanDate+"</td>";
+        tr.innerHTML = currentRow; 
         tableBody.append(tr);
 
     }
