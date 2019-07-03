@@ -112,7 +112,9 @@ function populateTable(stats){
         let tr = document.createElement('tr');
         let actualDate = new Date(dataObj['data'][i][0]);
         let cleanDate =  actualDate.getDate()  + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getFullYear();
-        let currentRow = "<td>" + dataObj['data'][i][1] +"</td><td>" +dataObj['type'][i][2] +"</td><td>"+cleanDate+"</td>";
+        let programName = dataObj['data'][i][1];
+        let programType = dataObj['data'][i][2];
+        let currentRow = "<td>" + programName +"</td><td>" + programType +"</td><td>"+ cleanDate +"</td>";
         tr.innerHTML = currentRow; 
         tableBody.append(tr);
 
