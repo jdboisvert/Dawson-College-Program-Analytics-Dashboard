@@ -78,26 +78,6 @@ function makeTableLatestPagination(){
 
 }
 
-//Convert the date in cell to Date object?
-function convertDate(d) {
-    var p = d.split("/");
-    return +(p[2]+p[1]+p[0]);
-  }
-  
-  function sortByDate() {
-    var tbody = document.querySelector("#tableBody");
-    // get trs as array for ease of use
-    var rows = [].slice.call(tbody.querySelectorAll("tr"));
-    
-    rows.sort(function(a,b) {
-      return convertDate(b.cells[2].innerHTML) - convertDate(a.cells[2].innerHTML);
-    });
-    
-    rows.forEach(function(v) {
-      tbody.appendChild(v); // note that .appendChild() *moves* elements
-    });
-  }
-
 //Populate the table with JSON data 
 function populateTable(stats){
 
@@ -120,8 +100,6 @@ function populateTable(stats){
 
     }
 
-    //Sort by dates
-    //sortByDate();
 
     //Make table have pages
     makeTableLatestPagination();
