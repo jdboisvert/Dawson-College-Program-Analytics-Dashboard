@@ -132,7 +132,7 @@ function generalStats(stats){
 //When document is loaded
 $(document).ready(function() {
     
-
+/*
     $.ajax({
         type:'POST',
         url:'dawson-web-scrapper.py',
@@ -144,7 +144,7 @@ $(document).ready(function() {
         error: function(request, status, error) {
           alert("Error: " + error)
         }
-     });
+     });*/
 
     //Load JSON file with data 
     loadJSONData();

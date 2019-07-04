@@ -19,6 +19,24 @@ body {
     background-color: transparent;
 }
 
+footer{
+
+  padding: 20px;
+  text-align: center;
+  background: #1abc9c;
+  color: white;
+  font-size: 30px;
+
+}
+
+header{
+padding: 20px;
+text-align: center;
+background: #1abc9c;
+color: white;
+font-size: 30px;
+}
+
 hr {
 
   margin-bottom: 3rem;
