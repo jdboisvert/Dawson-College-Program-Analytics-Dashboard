@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from dateutil import parser 
 import json
+import pandas as pd
 
 # Parse a single Program page at Dawson College
 def parseProgramPage(url):
@@ -92,18 +93,77 @@ def getPrograms(url):
                         continue
                     pageInfo['programName'] = tr.find(class_='program-name').find('a').contents[0].strip()
                     programs.append(pageInfo)
-                print(pageInfo)
-        print('Finished extracting')
+        
         return programs
 
-with open('data/dawson_data.json', 'w') as f:
-    json.dump(programs, f)
+# Gets amount of given type
+def getNumberOfType(wantedType):
+    #Get number of programs
+    mask = df['type'] == wantedType
+    number = len(df[mask])
+    return number
 
-
-
-
-
-
+# Main function 
 if __name__ == "__main__":
+    programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
+    print(programs)
+    with open('data/dawson_data.json', 'w') as f:
+        json.dump(programs, f)
 
+    with open('data/dawson_data.json', 'r') as f:
+        data = json.loads(f.read())
+
+    #Convert data to dataframe for easier time for stats
+    df = pd.DataFrame(data)
+
+    #Change date to actual Timestamp type
+    df ['date'] = pd.to_datetime(df['date'])
+
+    #First get number of different things offered at Dawson
+    totalOffered = len(df)
+
+    #Main stats of amounts
+    numberPrograms = getNumberOfType('Program')
+    numberProfiles = getNumberOfType('Profile')
+    numberDisciplines = getNumberOfType('Discipline')
+    numberSpecial = getNumberOfType('Special Area of Study')
+    numberGeneral = getNumberOfType('General Education')
     
+    #Add just year to column
+    year = []
+    for date in df['date']:
+        year.append(date.year)
+    
+    df['year'] = year
+
+    yearCounts = df['year'].value_counts()
+
+    #Now programs sorted by 
+    newest = df.sort_values(by='date', ascending=False)
+    newest = (newest.drop('year', axis=1)).reset_index(drop=True)
+
+    # Convert to json with to_json(orient='split')
+    # Use the json module to load that string to a dictionary
+    json_dict = json.loads(newest.to_json(orient='split'))
+
+    # Delete the index key with del json_dict['index'] 
+    del json_dict['index']
+
+    # Convert the dictionary back to json with json.dump or json.dumps
+    newestJSONStr = json.dumps(json_dict)
+
+    programStats = {
+    
+    'Total' : totalOffered,
+    'Number of Programs' : numberPrograms,
+    'Number of Profiles' : numberProfiles,
+    'Number of Disciplines' : numberDisciplines,
+    'Number of Special' : numberSpecial,
+    'Number of General' : numberGeneral,
+    'Year Counts' : yearCounts.to_json(),
+    'Programs ordered newest' : newestJSONStr
+    
+    }
+
+    with open('data/dawson_programs_stats.json', 'w') as f:
+        json.dump(programStats, f)

@@ -132,6 +132,21 @@ function generalStats(stats){
 //When document is loaded
 $(document).ready(function() {
     
+
+    $.ajax({
+        type:'get',
+        url:'dawson-web-scrapper.py',
+        cache:false,
+        async:'asynchronous',
+        dataType:'json',
+        success: function() {
+          alert('It worked!')
+        },
+        error: function(request, status, error) {
+          alert("Error: " + error)
+        }
+     });
+
     //Load JSON file with data 
     loadJSONData();
     //Populate general stats
