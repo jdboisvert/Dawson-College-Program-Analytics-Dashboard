@@ -109,7 +109,7 @@ function populateTable(stats){
 //Simply load JSON file into memory 
 function loadJSONData(){
 
-    $.getJSON("dawson_programs_stats.json", function(json) {
+    $.getJSON("/data/dawson_programs_stats.json", function(json) {
         let stats = json;
         generalStats(stats); 
         makeYearlyPieChart(stats);
@@ -134,11 +134,10 @@ $(document).ready(function() {
     
 
     $.ajax({
-        type:'get',
+        type:'POST',
         url:'dawson-web-scrapper.py',
-        cache:false,
-        async:'asynchronous',
-        dataType:'json',
+        async: false,
+        dataType: "text",
         success: function() {
           alert('It worked!')
         },
@@ -149,11 +148,5 @@ $(document).ready(function() {
 
     //Load JSON file with data 
     loadJSONData();
-    //Populate general stats
-    //generalStats(stats);
-    //Make yearly pie chart
-    //makeYearlyPieChart();
-    //Make latest table have pagination / populate
-    //makeTableLatestPagination();
 
 });

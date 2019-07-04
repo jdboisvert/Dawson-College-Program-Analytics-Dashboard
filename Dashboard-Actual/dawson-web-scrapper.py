@@ -103,7 +103,9 @@ def getNumberOfType(wantedType):
     number = len(df[mask])
     return number
 
-# Main function 
+
+
+# Main function
 if __name__ == "__main__":
     programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
     print(programs)
@@ -138,7 +140,7 @@ if __name__ == "__main__":
 
     yearCounts = df['year'].value_counts()
 
-    #Now programs sorted by 
+    #Now programs sorted by
     newest = df.sort_values(by='date', ascending=False)
     newest = (newest.drop('year', axis=1)).reset_index(drop=True)
 
@@ -146,7 +148,7 @@ if __name__ == "__main__":
     # Use the json module to load that string to a dictionary
     json_dict = json.loads(newest.to_json(orient='split'))
 
-    # Delete the index key with del json_dict['index'] 
+    # Delete the index key with del json_dict['index']
     del json_dict['index']
 
     # Convert the dictionary back to json with json.dump or json.dumps
