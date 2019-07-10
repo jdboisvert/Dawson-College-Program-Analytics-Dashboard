@@ -132,21 +132,23 @@ function generalStats(stats){
 //When document is loaded
 $(document).ready(function() {
     
-/*
+
     $.ajax({
         type:'POST',
-        url:'dawson-web-scrapper.py',
+        url:'dawsonwebscrapper.py',
         async: false,
         dataType: "text",
-        success: function() {
-          alert('It worked!')
+        success: function(stats) {
+            generalStats(stats); 
+            makeYearlyPieChart(stats);
+            populateTable(stats);
         },
         error: function(request, status, error) {
           alert("Error: " + error)
         }
-     });*/
+     });
 
     //Load JSON file with data 
-    loadJSONData();
+    //loadJSONData();
 
 });
