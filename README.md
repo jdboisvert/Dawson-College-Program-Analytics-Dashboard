@@ -16,9 +16,15 @@ The purpose of this project is to gain a better understanding of web scrapping a
 - Average Rating of School
 - Number of Ratings
 - Automated python script for webpage
-- Make dashboard prettier + Better documentation 
+- Make dashboard prettier + Better documentation (I need to make better comments)
 
-### Remarks: 
+### To Use: 
+
+1 - Run the dawson-web-scrapper.py script
+2 - Open index.html on a web server (or as I am writing this Firefox supports the file protcol so you are able to access the json file easily there). 
+3 - Enjoy the very simple dashboard and if ever feel free to report any issues you may see or let me know what you think. I am planning on posting v2 soon with more of a automated process and better / modular dashboard. 
+
+### Remarks on phase: 
 Thought I could just use javascirpt and call the python script but I learned I was unable to do so. My next step is to download flask 
 and write the code around that so my python script will run in the browser. Make sure to run the script dawson-web-scrapper.py in the Dashboard-Actual Directory to get most up to date data. 
 
