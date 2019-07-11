@@ -20,9 +20,9 @@ The purpose of this project is to gain a better understanding of web scrapping a
 
 ### To Use: 
 
-1 - Run the dawson-web-scrapper.py script
-2 - Open index.html on a web server (or as I am writing this Firefox supports the file protcol so you are able to access the json file easily there). 
-3 - Enjoy the very simple dashboard and if ever feel free to report any issues you may see or let me know what you think. I am planning on posting v2 soon with more of a automated process and better / modular dashboard. 
+- Run the dawson-web-scrapper.py script
+- Open index.html on a web server (or as I am writing this Firefox supports the file protcol so you are able to access the json file easily there). 
+- Enjoy the very simple dashboard and if ever feel free to report any issues you may see or let me know what you think. I am planning on posting v2 soon with more of a automated process and better / modular dashboard. 
 
 ### Remarks on phase: 
 Thought I could just use javascirpt and call the python script but I learned I was unable to do so. My next step is to download flask 
