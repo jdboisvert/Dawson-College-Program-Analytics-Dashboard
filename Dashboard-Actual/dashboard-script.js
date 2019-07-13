@@ -94,7 +94,8 @@ function populateTable(stats){
         let cleanDate =  actualDate.getDate()  + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getFullYear();
         let programName = dataObj['data'][i][1];
         let programType = dataObj['data'][i][2];
-        let currentRow = "<td>" + programName +"</td><td>" + programType +"</td><td>"+ cleanDate +"</td>";
+        let programUrl = dataObj['data'][i][3];
+        let currentRow = "<td>" + programName +"</td><td>" + programType +"</td><td>"+ cleanDate +"</td><td><a href=" + programUrl + " target=\"blank\">More Info</a>" ;
         tr.innerHTML = currentRow; 
         tableBody.append(tr);
 
@@ -109,7 +110,7 @@ function populateTable(stats){
 //Simply load JSON file into memory 
 function loadJSONData(){
 
-    $.getJSON("/data/dawson_programs_stats.json", function(json) {
+    $.getJSON("data/dawson_programs_stats.json", function(json) {
         let stats = json;
         generalStats(stats); 
         makeYearlyPieChart(stats);
