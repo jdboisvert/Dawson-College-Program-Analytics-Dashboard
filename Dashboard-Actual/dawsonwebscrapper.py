@@ -107,11 +107,6 @@ def getNumberOfType(df, wantedType):
 # Main function
 def init():
     programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
-    #with open('data/dawson_data.json', 'w') as f:
-      #  json.dump(programs, f)
-
-   # with open('data/dawson_data.json', 'r') as f:
-     #   data = json.loads(f.read())
 
     #Convert data to dataframe for easier time for stats
     df = pd.DataFrame(programs)
@@ -167,8 +162,8 @@ def init():
 
     return programStats
 
-    #with open('data/dawson_programs_stats.json', 'w') as f:
-        #json.dump(programStats, f)
+    with open('data/dawson_programs_stats.json', 'w') as f:
+        json.dump(programStats, f)
 
 if __name__ == "__main__":
-    return init()
+    init()

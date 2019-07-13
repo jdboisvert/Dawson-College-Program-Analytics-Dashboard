@@ -133,12 +133,13 @@ function generalStats(stats){
 $(document).ready(function() {
     
 
-    $.ajax({
-        type:'POST',
+    /*$.ajax({
+        type:'GET',
         url:'dawsonwebscrapper.py',
-        async: false,
+        async: true,
         dataType: "text",
         success: function(stats) {
+            alert(stats);
             generalStats(stats); 
             makeYearlyPieChart(stats);
             populateTable(stats);
@@ -146,9 +147,9 @@ $(document).ready(function() {
         error: function(request, status, error) {
           alert("Error: " + error)
         }
-     });
+     });*/
 
     //Load JSON file with data 
-    //loadJSONData();
+    loadJSONData();
 
 });
