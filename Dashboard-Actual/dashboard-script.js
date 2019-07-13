@@ -119,6 +119,17 @@ function loadJSONData(){
 
 }
 
+//Simply load JSON file into memory 
+function loadJSONTest(){
+
+    $.getJSON("https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJq-T-oxIayUwR4TfxLVjJJW0&fields=name,rating,formatted_phone_number&key=", function(json) {
+
+        alert(json);
+
+    });
+
+}
+
 function generalStats(stats){
 
     $("#totalCount").html(stats['Total']);
@@ -152,5 +163,9 @@ $(document).ready(function() {
 
     //Load JSON file with data 
     loadJSONData();
+
+    loadJSONTest();
+
+
 
 });
