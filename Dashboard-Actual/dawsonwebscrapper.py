@@ -41,12 +41,8 @@ def getDateOfMods(soup):
     # Remove the 'Last Modified: ' field so just date is left
     dateModified = dateModified[15:]
     return dateModified
-    
 
-#Gets all the programs on the Dawson page
-def getPrograms(url):
-        # An array to hold all the programs retrieved
-        programs = []
+def createSoup(url):
         #This is just to make it so the request goes through and the Dawson website does not decline it 
         headers = {
         'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36',
@@ -61,6 +57,14 @@ def getPrograms(url):
     
         # Make html of page a BeautifulSoup 
         soup = BeautifulSoup(html, 'lxml')
+        return soup
+
+#Gets all the programs on the Dawson page
+def getPrograms(url):
+        # An array to hold all the programs retrieved
+        programs = []
+
+        soup = createSoup(url)
     
         content = soup.find(class_='entry-content')
     
@@ -104,11 +108,19 @@ def getNumberOfType(df, wantedType):
     number = len(df[mask])
     return number
 
+#Method to call and get ratings of the url given
+def getRatings(url):
+    soup = createSoup(url)
+    print(soup)
+    content = soup.find(class_='i9oCwQZp5aGI-0078sLar460')
+    print(content)
+    return null
 
 
 # Main function
 def init():
     programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
+    ratings = getRatings('https://www.google.com/search?ei=tCspXasPyNa1BqvAm1A&q=dawson+college&oq=dawson+college&gs_l=psy-ab.3..35i39j0i67j0l6j0i67j0.5106.5426..5595...0.0..0.137.213.1j1......0....1..gws-wiz.......0i71.gM3ZKakJGPc#lrd=0x4cc91a12a3fee4ab:0x6d25c9582df137e1,1,,,')
 
     #Convert data to dataframe for easier time for stats
     df = pd.DataFrame(programs)
