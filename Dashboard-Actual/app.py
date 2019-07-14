@@ -7,8 +7,13 @@ app = Flask(__name__, static_url_path='/static')
 
 @app.route('/')
 def index():
-    #SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+    return render_template("loading.html")
 
+
+
+@app.route('/', methods=['POST'])
+def form(display=None):
+    #First run scrapping
     dawsonwebscrapper.init()
 
     return render_template('index.html')
