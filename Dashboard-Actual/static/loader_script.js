@@ -1,20 +1,9 @@
-//Make this in the future load from a text file
-function getRandomMessage(){
-
-    return "Just scrapping the website. Should only take a few moments!";
-
-}
-
 //Function used to generate random texts about the loading process
 function loadingMessages(){
 
-    //An infinite loop to ensure messages are always displayed
-    while (true){
 
-        let message = getRandomMessage();
-        $('#viewboardContainer').html(message);
-
-    }
+        let message = "Just scrapping the website. Should only take a few moments!";
+        $('#message').html(message);
 
 
 }
