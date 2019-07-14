@@ -119,17 +119,6 @@ function loadJSONData(){
 
 }
 
-//Simply load JSON file into memory 
-function loadJSONTest(){
-
-    $.getJSON("https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJq-T-oxIayUwR4TfxLVjJJW0&fields=name,rating,formatted_phone_number&key=", function(json) {
-
-        alert(json);
-
-    });
-
-}
-
 function generalStats(stats){
 
     $("#totalCount").html(stats['Total']);
@@ -145,7 +134,7 @@ function generalStats(stats){
 $(document).ready(function() {
     
 
-    /*$.ajax({
+    $.ajax({
         type:'GET',
         url:'dawsonwebscrapper.py',
         async: true,
@@ -159,12 +148,10 @@ $(document).ready(function() {
         error: function(request, status, error) {
           alert("Error: " + error)
         }
-     });*/
+     });
 
     //Load JSON file with data 
     loadJSONData();
-
-    loadJSONTest();
 
 
 
