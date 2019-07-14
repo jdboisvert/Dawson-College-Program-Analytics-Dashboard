@@ -1,10 +1,10 @@
-function getYearValues(stats){
+function getYearValues(stats) {
 
     let yearCountsStr = stats['Year Counts'];
     let yearCountsUnFormatted = yearCountsStr.split(',');
-    let yearCounts = {}; 
+    let yearCounts = {};
 
-    for(let i = 0; i < yearCountsUnFormatted.length; i++){
+    for (let i = 0; i < yearCountsUnFormatted.length; i++) {
 
         let values = yearCountsUnFormatted[i].split(':');
         //Ensure only numbers are stored
@@ -12,7 +12,7 @@ function getYearValues(stats){
 
     }
 
-    return yearCounts; 
+    return yearCounts;
 
 }
 
@@ -27,7 +27,7 @@ function makeYearlyPieChart(stats) {
 
     //Build an array of the values that match the key
     values = []
-    for(let i = 0; i < keys.length; i++){
+    for (let i = 0; i < keys.length; i++) {
 
         values.push(yearlyStats[keys[i]]);
 
@@ -50,7 +50,7 @@ function makeYearlyPieChart(stats) {
 
 }
 
-function makeTableLatestPagination(){
+function makeTableLatestPagination() {
 
     $('#latestPrograms').after('<div id="nav"></div>');
     var rowsShown = 7;
@@ -79,7 +79,7 @@ function makeTableLatestPagination(){
 }
 
 //Populate the table with JSON data 
-function populateTable(stats){
+function populateTable(stats) {
 
     dataStr = stats['Programs ordered newest'];
     let dataObj = JSON.parse(dataStr);
@@ -88,15 +88,15 @@ function populateTable(stats){
     //Just to know how many programs there are
     numberOfItems = Object.keys(dataObj['data']).length
     //Populating the table
-    for(let i = 0; i < numberOfItems; i++){
+    for (let i = 0; i < numberOfItems; i++) {
         let tr = document.createElement('tr');
         let actualDate = new Date(dataObj['data'][i][0]);
-        let cleanDate =  actualDate.getDate()  + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getFullYear();
+        let cleanDate = actualDate.getDate() + "/" + (actualDate.getMonth() + 1) + "/" + actualDate.getFullYear();
         let programName = dataObj['data'][i][1];
         let programType = dataObj['data'][i][2];
         let programUrl = dataObj['data'][i][3];
-        let currentRow = "<td>" + programName +"</td><td>" + programType +"</td><td>"+ cleanDate +"</td><td><a href=" + programUrl + " target=\"blank\">More Info</a>" ;
-        tr.innerHTML = currentRow; 
+        let currentRow = "<td>" + programName + "</td><td>" + programType + "</td><td>" + cleanDate + "</td><td><a href=" + programUrl + " target=\"blank\">More Info</a>";
+        tr.innerHTML = currentRow;
         tableBody.append(tr);
 
     }
@@ -108,18 +108,18 @@ function populateTable(stats){
 }
 
 //Simply load JSON file into memory 
-function loadJSONData(){
+function loadJSONData() {
 
     $.getJSON("/static/data/dawson_programs_stats.json", function(json) {
         let stats = json;
-        generalStats(stats); 
+        generalStats(stats);
         makeYearlyPieChart(stats);
         populateTable(stats);
     });
 
 }
 
-function generalStats(stats){
+function generalStats(stats) {
 
     $("#totalCount").html(stats['Total']);
     $("#programCount").html(stats['Number of Programs']);
@@ -132,7 +132,7 @@ function generalStats(stats){
 
 //When document is loaded
 $(document).ready(function() {
-    
+
     //Load JSON file with data 
     loadJSONData();
 

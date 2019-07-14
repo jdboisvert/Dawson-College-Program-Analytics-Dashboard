@@ -5,12 +5,13 @@ from flask import Flask, render_template, url_for, json
 
 app = Flask(__name__, static_url_path='/static')
 
+#Main page
 @app.route('/')
 def index():
     return render_template("loading.html")
 
 
-
+#Dashboard
 @app.route('/', methods=['POST'])
 def form(display=None):
     #First run scrapping

@@ -1,86 +1,83 @@
 <!doctype html>
 <html lang="en">
-
-<head>
-	<!-- Meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title> Dawson College Analytics </title>
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-  <script src="{{ url_for('static', filename='dashboard-script.js') }}"></script>
-</head>
-
-<body>
-	<header>
-	<h1 id="title-dashboard">Dawson College Dashboard</h1>
-</header>
-<hr>
-    <hr>
-		<!-- First Row -->
-		<div class="row align-items-center justify-content-center mb-5">
-			<div class="col text-center">
-				<p class="description">Total Programs</p>
-				<p class="lrg-heading" id="totalCount"></p>
-			</div>
-			<div class="col text-center">
-				<p class="description">Total Specific Programs</p>
-				<p class="lrg-heading" id="programCount"></p>
+   <head>
+      <!-- Meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title> Dawson College Analytics </title>
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+      <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+      <script src="{{ url_for('static', filename='dashboard-script.js') }}"></script>
+   </head>
+   <body>
+      <header>
+         <h1 id="title-dashboard">Dawson College Dashboard</h1>
+      </header>
+      <hr>
+      <hr>
+      <!-- First Row -->
+      <div class="row align-items-center justify-content-center mb-5">
+         <div class="col text-center">
+            <p class="description">Total Programs</p>
+            <p class="lrg-heading" id="totalCount"></p>
+         </div>
+         <div class="col text-center">
+            <p class="description">Total Specific Programs</p>
+            <p class="lrg-heading" id="programCount"></p>
+         </div>
+         <div class="col text-center">
+            <p class="description">Total Profiles</p>
+            <p class="lrg-heading" id="profileCount"></p>
+         </div>
       </div>
-      <div class="col text-center">
-				<p class="description">Total Profiles</p>
-				<p class="lrg-heading" id="profileCount"></p>
-			</div>
-    </div>
-    <hr>
-		<!-- Second Row -->
-		<div class="row align-items-center justify-content-center mb-5">
-			<div class="col text-center">
-				<p class="description">Total Disciplines</p>
-				<p class="lrg-heading" id="disciplineCount"></p>
+      <hr>
+      <!-- Second Row -->
+      <div class="row align-items-center justify-content-center mb-5">
+         <div class="col text-center">
+            <p class="description">Total Disciplines</p>
+            <p class="lrg-heading" id="disciplineCount"></p>
+         </div>
+         <div class="col text-center">
+            <p class="description">Total Special Fields Of Studies</p>
+            <p class="lrg-heading" id="specialCount"></p>
+         </div>
+         <div class="col text-center">
+            <p class="description">Total General Education</p>
+            <p class="lrg-heading" id="generalEduCount"></p>
+         </div>
       </div>
-      <div class="col text-center">
-				<p class="description">Total Special Fields Of Studies</p>
-				<p class="lrg-heading" id="specialCount"></p>
-			</div>
-			<div class="col text-center">
-				<p class="description">Total General Education</p>
-				<p class="lrg-heading" id="generalEduCount"></p>
-			</div>
-    </div>
-    <hr>
-    <!-- Third Row -->
-		<div class="row mb-5">
-			<div class="col text-center">
-				<p class="description">Years last updated</p>
-				<canvas id="newestPrograms"></canvas>
+      <hr>
+      <!-- Third Row -->
+      <div class="row mb-5">
+         <div class="col text-center">
+            <p class="description">Years last updated</p>
+            <canvas id="newestPrograms"></canvas>
+         </div>
+         <div class="col text-center">
+            <p class="description">Programs sorted by most up to date</p>
+            <table id="latestPrograms" class="table table-striped table-bordered table-sm">
+               <thead>
+                  <tr>
+                     <th class="th-sm">Program Name</th>
+                     <th class="th-sm">Type</th>
+                     <th class="th-sm">Last Modified (DD/MM/YYYY)</th>
+                     <th class="th-sm">Link</th>
+                  </tr>
+               </thead>
+               <tbody id="tableBody">
+                  <!--Data will be populated -->
+               </tbody>
+               <!-- Anchor used just for when page reloads to table when switching between tables-->
+               <a id="latestProgram"></a>
+            </table>
+         </div>
       </div>
-      <div class="col text-center">
-				<p class="description">Programs sorted by most up to date</p>
-        <table id="latestPrograms" class="table table-striped table-bordered table-sm">
-          <thead>
-            <tr>
-              <th class="th-sm">Program Name</th>
-              <th class="th-sm">Type</th>
-			  <th class="th-sm">Last Modified (DD/MM/YYYY)</th>
-			  <th class="th-sm">Link</th>
-            </tr>
-          </thead>
-          <tbody id="tableBody">
-			<!--Data will be populated -->
-          </tbody>
-          <!-- Anchor used just for when page reloads to table when switching between tables-->
-          <a id="latestProgram"></a>
-        </table>
-			</div>
-		</div>
-	</div>
-	<footer>
-		<h5>Creator : Jeffrey Boisvert</h5>
-	</footer>
-</body>
-
+      </div>
+      <footer>
+         <h5>Creator : Jeffrey Boisvert</h5>
+      </footer>
+   </body>
 </html>
