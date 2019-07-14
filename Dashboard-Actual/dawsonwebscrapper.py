@@ -96,7 +96,6 @@ def getPrograms(url):
                         continue
                     pageInfo['programName'] = tr.find(class_='program-name').find('a').contents[0].strip()
                     pageInfo['url'] = programUrl; 
-                    #print('Scrapped ' + pageInfo['programName'])
                     programs.append(pageInfo)
         
         return programs
