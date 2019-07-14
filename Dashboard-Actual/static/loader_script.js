@@ -1,7 +1,7 @@
 //Make this in the future load from a text file
 function getRandomMessage(){
 
-    return "Just scrapping the website. Should only take a few moments!"
+    return "Just scrapping the website. Should only take a few moments!";
 
 }
 
@@ -22,14 +22,12 @@ function loadingMessages(){
 //When document is loaded
 $(document).ready(function() {
     
-    //Used to make the loader icon appear and make enter button disappear
-    document.getElementById('dashboardEnter').addEventListener('click', function(){
+    $('#viewboard').submit(function(e){
+        $('#loader').css('display', 'block'); 
+        $('#viewboard').css('display', 'none');
+        loadingMessages();
 
-        $('#loader').css('display': 'block'); 
-        $('#viewboard').css('display': 'none');
-
-
-    })
+    });
 
 
 });
