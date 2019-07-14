@@ -164,7 +164,7 @@ def init():
     
     }
 
-    with open('data/dawson_programs_stats.json', 'w') as f:
+    with open('static/data/dawson_programs_stats.json', 'w') as f:
         json.dump(programStats, f)
 
 
