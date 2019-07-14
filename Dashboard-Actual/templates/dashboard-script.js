@@ -110,7 +110,7 @@ function populateTable(stats){
 //Simply load JSON file into memory 
 function loadJSONData(){
 
-    $.getJSON("../data/dawson_programs_stats.json", function(json) {
+    $.getJSON("data/dawson_programs_stats.json", function(json) {
         let stats = json;
         generalStats(stats); 
         makeYearlyPieChart(stats);
