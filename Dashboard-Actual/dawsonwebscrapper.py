@@ -170,4 +170,3 @@ def init():
 
 if __name__ == "__main__":
     init()
-    print('Finished! Open the index.html')
