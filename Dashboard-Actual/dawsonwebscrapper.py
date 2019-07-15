@@ -107,9 +107,22 @@ def getNumberOfType(df, wantedType):
     number = len(df[mask])
     return number
 
+#Function get the number of students at Dawson College
+def getNumberOfStudents():
+    soup = createSoup('https://www.google.com/search?q=dawson+college+number+of+students&stick=H4sIAAAAAAAAAOPgE-LUz9U3MLTMKjbV0s8ot9JPzs_JSU0uyczP088vSk_My6xKBHGKrfJKc5NSixTy0xSKS0pTUvNKihexKqYklhfn5ymANaWnKmCqAQDR74rvYgAAAA&sa=X&ved=2ahUKEwjXvq6b97XjAhUaQ80KHTRfCb8Q6BMoADAgegQIGhAC&biw=1156&bih=754')
+    tag = soup.find(class_='Z0LcW')
+    #Get content with leading or trailing space
+    content = tag.contents[0].strip()
+    #Remove commas in the number and cast to an int
+    contentCasted = int(content.replace(',', ''))
+    return contentCasted
+
 # Main function
 def init():
     programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
+
+    #Getting number of students
+    numberOfStudents = getNumberOfStudents()
 
     #Convert data to dataframe for easier time for stats
     df = pd.DataFrame(programs)
@@ -160,6 +173,7 @@ def init():
     'Number of General' : numberGeneral,
     'Year Counts' : yearCounts.to_json(),
     'Programs ordered newest' : newestJSONStr
+    'Number of Students' : numberOfStudents
     
     }
 
