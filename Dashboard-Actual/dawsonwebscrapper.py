@@ -117,12 +117,20 @@ def getNumberOfStudents():
     contentCasted = int(content.replace(',', ''))
     return contentCasted
 
+def getNumberOfFaculty():
+    soup = createSoup('')
+    #<form action="/phone-directory" method="post" name="phone_form">
+
+
 # Main function
 def init():
     programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
 
     #Getting number of students
     numberOfStudents = getNumberOfStudents()
+
+    #Getting number of faculty 
+    numberOfFaculty = getNumberOfFaculty()
 
     #Convert data to dataframe for easier time for stats
     df = pd.DataFrame(programs)
