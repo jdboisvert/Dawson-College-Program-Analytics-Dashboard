@@ -129,7 +129,7 @@ def getNumberOfFaculty():
     res = requests.post(url, data=params, headers=head)
     soup = BeautifulSoup(res.text,"html.parser")
     tags = soup.find_all('b')
-    return round(float(tags[0].contents[0]), 2)
+    return int(tags[0].contents[0]
 
     
 
@@ -144,7 +144,8 @@ def init():
     #Getting number of faculty 
     numberOfFaculty = getNumberOfFaculty()
 
-    numberStudentsPerFaculty = numberOfStudents / numberOfFaculty
+    #Number of students per faculty 
+    numberStudentsPerFaculty = round((numberOfStudents / numberOfFaculty), 2)
 
     #Convert data to dataframe for easier time for stats
     df = pd.DataFrame(programs)
