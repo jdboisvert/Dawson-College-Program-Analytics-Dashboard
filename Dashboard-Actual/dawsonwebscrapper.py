@@ -129,7 +129,7 @@ def getNumberOfFaculty():
     res = requests.post(url, data=params, headers=head)
     soup = BeautifulSoup(res.text,"html.parser")
     tags = soup.find_all('b')
-    return int(tags[0].contents[0]
+    return int(tags[0].contents[0])
 
     
 
