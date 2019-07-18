@@ -118,8 +118,20 @@ def getNumberOfStudents():
     return contentCasted
 
 def getNumberOfFaculty():
-    soup = createSoup('')
-    #<form action="/phone-directory" method="post" name="phone_form">
+
+    params = {"position" : "Faculty", 
+            "search" : "Search"}
+    head = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.84 Safari/537.36",
+        "X-Requested-With": "XMLHttpRequest"}
+
+    url = "https://www.dawsoncollege.qc.ca/phone-directory"
+    res = requests.post(url, data=params, headers=head)
+    soup = bs4.BeautifulSoup(res.text,"html.parser")
+    tags = soup.find_all('b')
+    return int(tags[0].contents[0])
+
+    
 
 
 # Main function
@@ -131,6 +143,8 @@ def init():
 
     #Getting number of faculty 
     numberOfFaculty = getNumberOfFaculty()
+
+    numberStudentsPerFaculty = numberOfStudents / numberOfFaculty
 
     #Convert data to dataframe for easier time for stats
     df = pd.DataFrame(programs)
@@ -180,8 +194,10 @@ def init():
     'Number of Special' : numberSpecial,
     'Number of General' : numberGeneral,
     'Year Counts' : yearCounts.to_json(),
-    'Programs ordered newest' : newestJSONStr
-    'Number of Students' : numberOfStudents
+    'Programs ordered newest' : newestJSONStr,
+    'Number of Students' : numberOfStudents,
+    'Number of Faculty' : numberOfFaculty,
+    'Number of Students per Faculty' : numberStudentsPerFaculty
     
     }
 
