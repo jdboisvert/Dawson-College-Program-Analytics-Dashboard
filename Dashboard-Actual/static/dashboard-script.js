@@ -127,6 +127,9 @@ function generalStats(stats) {
     $("#disciplineCount").html(stats['Number of Disciplines']);
     $("#specialCount").html(stats['Number of Special']);
     $("#generalEduCount").html(stats['Number of General']);
+    $("#studentCount").html(stats['Number of Students']);
+    $("#facultyCount").html(stats['Number of Faculty']);
+    $("#studentToFacultyRatio").html(stats['Number of Students per Faculty'] + ': 1');
 
 }
 
