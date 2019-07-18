@@ -127,9 +127,9 @@ def getNumberOfFaculty():
 
     url = "https://www.dawsoncollege.qc.ca/phone-directory"
     res = requests.post(url, data=params, headers=head)
-    soup = bs4.BeautifulSoup(res.text,"html.parser")
+    soup = BeautifulSoup(res.text,"html.parser")
     tags = soup.find_all('b')
-    return int(tags[0].contents[0])
+    return round(int(tags[0].contents[0]))
 
     
 
