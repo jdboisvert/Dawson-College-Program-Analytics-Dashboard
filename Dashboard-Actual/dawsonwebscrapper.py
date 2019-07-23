@@ -131,9 +131,6 @@ def getNumberOfFaculty():
     tags = soup.find_all('b')
     return int(tags[0].contents[0])
 
-    
-
-
 # Main function
 def init():
     programs = getPrograms('https://www.dawsoncollege.qc.ca/programs')
@@ -204,7 +201,6 @@ def init():
 
     with open('static/data/dawson_programs_stats.json', 'w') as f:
         json.dump(programStats, f)
-
 
 if __name__ == "__main__":
     init()
