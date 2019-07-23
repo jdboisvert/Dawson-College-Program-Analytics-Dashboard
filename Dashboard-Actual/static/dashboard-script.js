@@ -129,7 +129,7 @@ function generalStats(stats) {
     $("#generalEduCount").html(stats['Number of General']);
     $("#studentCount").html(stats['Number of Students']);
     $("#facultyCount").html(stats['Number of Faculty']);
-    $("#studentToFacultyRatio").html(stats['Number of Students per Faculty'] + ': 1');
+    $("#studentToFacultyRatio").html(stats['Number of Students per Faculty'] + ' : 1');
 
 }
 
